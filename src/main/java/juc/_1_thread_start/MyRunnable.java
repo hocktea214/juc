@@ -16,8 +16,7 @@ public class MyRunnable implements Runnable {
     }
     
     public void run() {
-        JucUtil.sleep1s();
-
-        System.out.println(Thread.currentThread().getName() + " is Running." + (idx == 0 ? "" : "Index: " + idx) );        
+        JucUtil.sleep100ms();
+        JucUtil.print("is Running." + (idx == 0 ? "" : "Index: " + idx) );        
     }
 }

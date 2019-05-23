@@ -5,6 +5,7 @@ import juc.util.JucUtil;
 public class MyThread extends Thread {
     public static void main(String[] args) {
         new MyThread().start();
+        JucUtil.echoPid();
     }
     
     public MyThread() {
@@ -13,8 +14,7 @@ public class MyThread extends Thread {
     }
 
     public void run() {
-        JucUtil.sleep1s();
-
         System.out.println(getName() + " is Running.");
+        JucUtil.sleepUtilDeath();
     }
 }

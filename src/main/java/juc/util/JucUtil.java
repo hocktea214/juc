@@ -1,9 +1,15 @@
 package juc.util;
 
+import java.lang.management.ManagementFactory;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class JucUtil {
+    public static void echoPid() {
+        String name = ManagementFactory.getRuntimeMXBean().getName();
+        System.out.println(name.substring(0, name.indexOf("@")));
+    }
+    
     public static void sleep1ms() {
         try {
             Thread.sleep(1L);
@@ -39,12 +45,21 @@ public class JucUtil {
         }
     }
     
+    public static void sleepUtilDeath() {
+        try {
+            Thread.sleep(Long.MAX_VALUE);
+        } catch (InterruptedException e) {
+        }
+    }
+    
     private static final String stringFormat = "%d %s:%s";
     private static final String stringFormat2 = "%s:%s_%d";
     private static final String stringFormat3 = "%s %s %s:%d";
     private static final String stringFormat4 = "%s %s %s";
 
-    private static final ThreadLocal<SimpleDateFormat> formatLocal = ThreadLocal.withInitial(() -> new SimpleDateFormat("yyyy:mm:dd HH:mm:ss.SSS"));
+    private static final ThreadLocal<SimpleDateFormat> formatLocal = ThreadLocal.withInitial(
+        () -> new SimpleDateFormat("yyyy-MM-dddd HH:mm:ss.SSS")
+    );
 
     public static void print() {
         print("is Running");
